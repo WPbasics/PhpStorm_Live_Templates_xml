@@ -1,6 +1,6 @@
 <blockquote>This document is a live document which will be updated regularly.</blockquote>
 
-# PhpStorm_Live_Templates_xml
+# PhpStorm Live Templates | Genesis Framework
 I have looked high and low for Genesis snippets for PhpStorm without much luck.  Therefore I have decided to create my own.
 This is my repo of Genesis Live Templates for PhpStorm.
 
