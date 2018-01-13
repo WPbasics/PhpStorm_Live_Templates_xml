@@ -87,4 +87,66 @@
       <option name="PHP" value="true" />
     </context>
   </template>
+  <template name="read_more_content_modify" value="// Modify the Genesis content limit read more link&#10;add_filter( 'get_the_content_more_link', 'sp_read_more_link' );&#10;function sp_read_more_link() {&#10;&#9;return '... &lt;a class=&quot;more-link&quot; href=&quot;' . get_permalink() . '&quot;&gt;Continue Reading&lt;/a&gt;';&#10;}" description="Modify read more link when using the Content Limit in Genesis" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+      <option name="PHP Class Member" value="false" />
+    </context>
+  </template>
+  <template name="read_more_excerpt_modify" value="// Modify the Excerpt read more link&#10;add_filter( 'excerpt_more', 'new_excerpt_more' );&#10;function new_excerpt_more( $more ) {&#10;    return '... &lt;a class=&quot;more-link&quot; href=&quot;' . get_permalink() . '&quot;&gt;Continue Reading&lt;/a&gt;';&#10;}" description="Modify read more for Excerpts in WordPress" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="featured_image_if_available" value="//Display Featured image if present, otherwise show a default image in Genesis&#10;$img = genesis_get_image() ? genesis_get_image( array( 'size' =&gt; '$related$' ) ) : '&lt;img src=&quot;' . get_stylesheet_directory_uri() . '/images/$image_name$&quot; alt=&quot;' . get_the_title() . '&quot; /&gt;';" description="Modify read more for Excerpts in WordPress" toReformat="false" toShortenFQNames="true">
+    <variable name="related" expression="" defaultValue="&quot;related&quot;" alwaysStopAt="true" />
+    <variable name="image_name" expression="" defaultValue="&quot;image.png&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="enqueue_scripts_in_wordpress" value="// Enqueue $script_description$&#10;add_action( 'wp_enqueue_scripts', '$prefix$_enqueue_scripts' );&#10;function $prefix$_enqueue_scripts() {&#10;    wp_enqueue_script( '$jquery_headroom$', get_stylesheet_directory_uri() . '/js/jQuery.$headroom_min$.js', array( 'jquery' ), '', true );&#10;&#10;    wp_enqueue_script( '$headroom_init$', get_stylesheet_directory_uri() . '/js/$headroom_init_js$.js', array( '$jquery_headroom$' ), '1.0.0', true );&#10;}" description="Enqueue Scripts in WordPress" toReformat="false" toShortenFQNames="true">
+    <variable name="script_description" expression="" defaultValue="&quot;My Script&quot;" alwaysStopAt="true" />
+    <variable name="prefix" expression="" defaultValue="&quot;prefix&quot;" alwaysStopAt="true" />
+    <variable name="jquery_headroom" expression="" defaultValue="&quot;jquery headroom&quot;" alwaysStopAt="true" />
+    <variable name="headroom_min" expression="" defaultValue="&quot;headroom.min&quot;" alwaysStopAt="true" />
+    <variable name="headroom_init" expression="" defaultValue="&quot;headroom init&quot;" alwaysStopAt="true" />
+    <variable name="headroom_init_js" expression="" defaultValue="&quot;headroom.init&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="excerpts_modify_in_wordpress" value="// Modify the length of post excerpts&#10;add_filter( 'excerpt_length', 'sp_excerpt_length' );&#10;function sp_excerpt_length( $length ) {&#10;    return $50$; // pull first $50$ words&#10;}" description="Modify excerpts length in WordPress" toReformat="false" toShortenFQNames="true">
+    <variable name="50" expression="" defaultValue="&quot;50&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="featured_image_single_page" value="// Register new image size for Featured Image on single Posts&#10;add_image_size( '$single_thumbnail$', $width$, $height$, true );&#10;&#10;// Display featured image above content on single Posts&#10;add_action ( 'genesis_entry_content', '$prefix$_show_featured_image_single', 9 );&#10;function $prefix$_show_featured_image_single() {&#10;    if ( is_singular( 'post' ) &amp;&amp; has_post_thumbnail() ) {&#10;        echo '&lt;div class=&quot;single-thumbnail&quot;&gt;';&#10;            genesis_image( array( 'size' =&gt; '$single_thumbnail$' ) );&#10;        echo '&lt;/div&gt;';&#10;    }&#10;}" description="Display Featured image below title on Posts in Genesis" toReformat="false" toShortenFQNames="true">
+    <variable name="single_thumbnail" expression="" defaultValue="&quot;single-thumbnail&quot;" alwaysStopAt="true" />
+    <variable name="width" expression="" defaultValue="&quot;680&quot;" alwaysStopAt="true" />
+    <variable name="height" expression="" defaultValue="&quot;200&quot;" alwaysStopAt="true" />
+    <variable name="prefix" expression="" defaultValue="&quot;prefix&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="google_fonts_load_in_wordpress" value="// Enqueue Google fonts&#10;add_action( 'wp_enqueue_scripts', '$prefix$_load_google_fonts' );&#10;function $prefix$_load_google_fonts() {&#10;    wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=$googleFontURL$', array(), CHILD_THEME_VERSION );&#10;}" description="Load Google Fonts in WordPress" toReformat="false" toShortenFQNames="true">
+    <variable name="prefix" expression="" defaultValue="&quot;prefix&quot;" alwaysStopAt="true" />
+    <variable name="googleFontURL" expression="" defaultValue="&quot;Lato:300,700|Open+Sans:400italic,700italic,400,700&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="layouts_unregister_in_genesis" value="// Unregister content/sidebar layout setting&#10;genesis_unregister_layout( 'content-sidebar' );&#10;&#10;// Unregister sidebar/content layout setting&#10;genesis_unregister_layout( 'sidebar-content' );&#10;&#10;// Unregister content/sidebar/sidebar layout setting&#10;genesis_unregister_layout( 'content-sidebar-sidebar' );&#10;&#10;// Unregister sidebar/sidebar/content layout setting&#10;genesis_unregister_layout( 'sidebar-sidebar-content' );&#10;&#10;// Unregister sidebar/content/sidebar layout setting&#10;genesis_unregister_layout( 'sidebar-content-sidebar' );&#10;&#10;// Unregister full-width content layout setting&#10;genesis_unregister_layout( 'full-width-content' );" description="Unregister layouts in Genesis" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="featured_image_linked_to_permalink" value="// Display Featured image linking to permalink&#10;if ( $image = genesis_get_image( 'format=url&amp;size=$portfolio$' ) ) {&#10;    printf( '&lt;div class=&quot;$portfolio$&quot;&gt;&lt;a href=&quot;%s&quot; rel=&quot;bookmark&quot;&gt;&lt;img src=&quot;%s&quot; alt=&quot;%s&quot; /&gt;&lt;/a&gt;&lt;/div&gt;', get_permalink(), $image, the_title_attribute( 'echo=0' ) );&#10;}" description="Display image linking to permalink in Genesis" toReformat="false" toShortenFQNames="true">
+    <variable name="portfolio" expression="" defaultValue="&quot;portfolio&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
 </templateSet>
