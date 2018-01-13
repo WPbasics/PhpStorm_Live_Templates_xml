@@ -2,7 +2,7 @@
 
 # PhpStorm_Live_Templates_xml
 I have looked high and low for Genesis snippets for PhpStorm without much luck.  Therefore I have decided to create my own.
-This is my repo os Genesis Live Templates for Genesis
+This is my repo of Genesis Live Templates for Genesis.
 
 ## Installation Instructions
 1. Download and unzip this file.
@@ -16,4 +16,4 @@ All you have to do is type what you want and auto-complete will show you the sug
 These snippets are provided as is - without any support.
 
 ### Credits
-<a href="#">StudioPress</a>, <a href="https://github.com/GaryJones/sublime/tree/master/snippets">Gary Jones</a>, <a href="http://www.billerickson.net/code/">Bill Erickson</a>, <a href="https://github.com/srikat/Genesis">Sridhar Katakam</a> 
+<a href="#">StudioPress</a>, <a href="https://github.com/GaryJones/sublime/tree/master/snippets">Gary Jones</a>, <a href="http://www.billerickson.net/code/">Bill Erickson</a>, <a href="https://github.com/srikat/Genesis">Sridhar Katakam</a>, <a href="https://github.com/oalansari82/VS-Code-Snippets">Olonsari</a> 
